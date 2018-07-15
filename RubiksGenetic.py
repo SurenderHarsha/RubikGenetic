@@ -9,13 +9,18 @@ cube.reset()
 rev_dictionary={0:1,1:0,2:3,3:2,4:5,5:4,6:7,7:6,8:9,9:8,10:11,11:10}
 print cube.shuffle(shuffle_num)
 
-
-gene_size=shuffle_num
+if shuffle_num<=6:
+    gene_size=10-shuffle_num
+else:
+    if shuffle_num>13:
+        gene_size=12
+    else:
+        gene_size=shuffle_num
 pop_size=100
 
 mut_rate=1
 num_child=10
-
+max_mut=100
 
 def fitness(member):
     global cube
@@ -103,7 +108,7 @@ def mutation(po):
     for i in range(len(po)):
         c = po[i]
         for j in range(len(c)):
-            if mut_rate > random.randint(0, 150):
+            if mut_rate > random.randint(0, max_mut):
                 c[j] = random.randint(0,11)
         pop.append(c)
                 #print "Mutated"
